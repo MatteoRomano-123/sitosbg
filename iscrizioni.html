@@ -72,26 +72,27 @@
 <body class="d-flex flex-column min-vh-100">
     <div class="container-fluid flex-grow-1 d-flex flex-column">
         <div class="row black-row">
-            <div class="col-1 d-flex align-items-center">
-                <a href="index.html">
-                    <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo mr-3 ml-3">
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <!-- Logo -->
+                <a href="index.html" class="ml-3">
+                    <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo">
                 </a>
-            </div>
-                <div class="col-11 d-flex align-items-center justify-content-end">
-                 <div>
-                    <a href="iscrizioni.html" class="nav-link d-inline">Iscrizioni e modulistica</a>
-                 </div>
-                 <div>
-                    <a href="corsi.html" class="nav-link d-inline">Corsi</a>
-                 </div>
-                 <div>
-                    <a href="galleria.html" class="nav-link d-inline">Galleria</a>
-                 </div>
-                 <div>
-                    <a href="contatti.html" class="nav-link d-inline">Contatti</a>
-                 </div>
+        
+                <!-- Menu Hamburger per dispositivi mobili -->
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <!-- Navbar per desktop e mobile (aggiungere la classe collapse per dispositivi mobili) -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <div class="navbar-nav">
+                        <a href="iscrizioni.html" class="nav-link">Iscrizioni e modulistica</a>
+                        <a href="corsi.html" class="nav-link">Corsi</a>
+                        <a href="galleria.html" class="nav-link">Galleria</a>
+                        <a href="contatti.html" class="nav-link">Contatti</a>
+                    </div>
                 </div>
-            
+            </div>
         </div>
     </div>
     <div class="container-fluid flex-grow-1 d-flex flex-column">    
