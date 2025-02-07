@@ -10,8 +10,14 @@
             background-color: #e0e0e0; /* Colore di sfondo più scuro */
         }
         .logo {
-            max-width: 10%;
+            max-width: 60%;
             height: auto;
+        }
+        .logo-footer {
+            max-width: 60%;
+            height: auto;
+            padding: 0;
+            margin-right: 40px;
         }
         .black-row {
             background-color: black;
@@ -60,18 +66,29 @@
 <body class="d-flex flex-column min-vh-100">
     <div class="container-fluid flex-grow-1 d-flex flex-column">
         <div class="row black-row">
-            <div class="col-12 d-flex align-items-center justify-content-between">
+            <div class="col-1 d-flex align-items-center">
                 <a href="index.html">
-                    <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo mr-3">
+                    <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo mr-3 ml-3">
                 </a>
-                <div>
-                    <a href="iscrizioni.html" class="nav-link d-inline">Iscrizioni e modulistica</a>
-                    <a href="corsi.html" class="nav-link d-inline">Corsi</a>
-                    <a href="galleria.html" class="nav-link d-inline">Galleria</a>
-                    <a href="contatti.html" class="nav-link d-inline">Contatti</a>
-                </div>
             </div>
+                <div class="col-11 d-flex align-items-center justify-content-end">
+                 <div>
+                    <a href="iscrizioni.html" class="nav-link d-inline">Iscrizioni e modulistica</a>
+                 </div>
+                 <div>
+                    <a href="corsi.html" class="nav-link d-inline">Corsi</a>
+                 </div>
+                 <div>
+                    <a href="galleria.html" class="nav-link d-inline">Galleria</a>
+                 </div>
+                 <div>
+                    <a href="contatti.html" class="nav-link d-inline">Contatti</a>
+                 </div>
+                </div>
+            
         </div>
+    </div>
+    <div class="container-fluid flex-grow-1 d-flex flex-column">
         <div class="row flex-grow-1">
             <div class="col-12 d-flex flex-column align-items-center justify-content-center">
                 <h1><b>Chi siamo</b></h1>
@@ -97,18 +114,23 @@
                 </div>
             </div>
         </div>
+     
     </div>
-    <div class="row footer-row">
-        <div class="col-12 d-flex align-items-center justify-content-between">
-            <div>
-                <h2>Scuola Boxe Gorla</h2>
-                <h2>Indirizzo: piazza XXV Aprile , 18, Gorla Minore</h2>
-                <h2>Telefono: +39 123 456 789</h2>
-                <h2>Email: info@scuolaboxegorla.it</h2>
+    <div class="container-fluid flex-grow-1 d-flex flex-column">
+        <div class="row footer-row">
+            <div class="col-11 d-flex align-items-center justify-content-between">
+                <div>
+                    <h2>Scuola Boxe Gorla</h2>
+                    <h2>Indirizzo: piazza XXV Aprile , 18, Gorla Minore</h2>
+                    <h2>Telefono: +39 123 456 789</h2>
+                    <h2>Email: info@scuolaboxegorla.it</h2>
+                </div>
+            </div>    
+            <div class="col-1 d-flex align-items-center">
+                <a href="index.html" class="ml-auto">
+                    <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo logo-footer">
+                </a>
             </div>
-            <a href="index.html" class="ml-auto">
-                <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo">
-            </a>
         </div>
     </div>
     <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
