@@ -6,10 +6,12 @@
     <title>Scuola Boxe Gorla</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
-        body {
-            background-color: #e0e0e0; /* Colore di sfondo più scuro */
-            margin: 0; /* Rimuove il margine di default */
-            padding: 0; /* Rimuove il padding di default */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%; /* Assicura che non ci siano spazi laterali */
+            height: 100%;
+            overflow-x: hidden; /* Rimuove il possibile scroll orizzontale */
         }
         .logo {
             max-width: 60%;
@@ -70,11 +72,6 @@
         }
         .navbar-nav {
             margin-left: auto; /* Aggiunge un margine per spingere i link a destra */
-        }
-        /* Rimuove lo spazio bianco a destra */
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
         }
     </style>
 </head>
@@ -145,6 +142,12 @@
         </div>
     </div>
     <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
+
+    <!-- Aggiungi i JavaScript necessari per il menu a tendina e il comportamento responsivo -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
     <script>
         window.onscroll = function() {
             var scrollToTopButton = document.querySelector('.scroll-to-top');
