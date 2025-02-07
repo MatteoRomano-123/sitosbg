@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scuola Boxe Gorla</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <style>
         body {
-            background-color: #e0e0e0; /* Colore di sfondo più scuro */
+            background-color: #e0e0e0;
         }
         .logo {
             max-width: 60%;
@@ -22,72 +24,36 @@
         .black-row {
             background-color: black;
             color: white;
-            padding: 20px 0; 
-        }
-        .nav-link {
-            color: white;
-            margin-left: 20px;
         }
         .footer-row {
             background-color: black;
             color: white;
-            padding: 5px 0;
             text-align: center;
         }
-        .flex-grow-1 {
-            flex-grow: 1;
-        }
-        p {
-            font-size: 25px;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        h2 {
-            font-size: 15px;
-            text-align: left;
-            margin-left: 20px;
-        }
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1000;
+        .nav-link {
+            color: white !important;
         }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <div class="container-fluid flex-grow-1 d-flex flex-column">
-        <div class="row black-row">
-            <div class="col-1 d-flex align-items-center">
-                <a href="index.html">
-                    <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo mr-3 ml-3">
-                </a>
-            </div>
-                <div class="col-11 d-flex align-items-center justify-content-end">
-                 <div>
-                    <a href="iscrizioni.html" class="nav-link d-inline">Iscrizioni e modulistica</a>
-                 </div>
-                 <div>
-                    <a href="corsi.html" class="nav-link d-inline">Corsi</a>
-                 </div>
-                 <div>
-                    <a href="galleria.html" class="nav-link d-inline">Galleria</a>
-                 </div>
-                 <div>
-                    <a href="contatti.html" class="nav-link d-inline">Contatti</a>
-                 </div>
-                </div>
-            
+    <!-- Navbar con menu a tendina per dispositivi mobili -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo" style="max-width: 50px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="iscrizioni.html">Iscrizioni e modulistica</a></li>
+                <li class="nav-item"><a class="nav-link" href="corsi.html">Corsi</a></li>
+                <li class="nav-item"><a class="nav-link" href="galleria.html">Galleria</a></li>
+                <li class="nav-item"><a class="nav-link" href="contatti.html">Contatti</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
+
     <div class="container-fluid flex-grow-1 d-flex flex-column">
         <div class="row flex-grow-1">
             <div class="col-12 d-flex flex-column align-items-center justify-content-center">
@@ -114,8 +80,8 @@
                 </div>
             </div>
         </div>
-     
     </div>
+
     <div class="container-fluid flex-grow-1 d-flex flex-column">
         <div class="row footer-row">
             <div class="col-11 d-flex align-items-center justify-content-between">
@@ -125,7 +91,7 @@
                     <h2>Telefono: +39 123 456 789</h2>
                     <h2>Email: info@scuolaboxegorla.it</h2>
                 </div>
-            </div>    
+            </div>
             <div class="col-1 d-flex align-items-center">
                 <a href="index.html" class="ml-auto">
                     <img src="images/logo-sbg.jpeg" alt="Logo Scuola Boxe Gorla" class="logo logo-footer">
@@ -133,6 +99,7 @@
             </div>
         </div>
     </div>
+    
     <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
     <script>
         window.onscroll = function() {
