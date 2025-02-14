@@ -22,57 +22,29 @@
             color: white;
             padding: 20px 0;
         }
-        .nav-link {
-            color: white;
-            margin-left: 20px;
-        }
         .footer-row {
             background-color: black;
             color: white;
             padding: 5px 0;
             text-align: center;
         }
-        h1 {
-            margin-bottom: 20px;
-        }
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1000;
-        }
-        nav {
-            background-color: black;
-            padding: 0px;
-            width: 100%; 
-            margin: 0;
-        }
-        .container-fluid {
-            padding-left: 0;
-            padding-right: 0;
-        }
         #pdfViewer {
-            width: 100%;
+            width: 80%;
             height: 600px;
             border: none;
+            display: block;
+            margin: 0 auto;
         }
-        /* Nasconde il pulsante su desktop */
-        #downloadBtn {
+        .download-button {
             display: none;
-            width: 80%;
-            margin: 10px auto;
-            text-align: center;
+            margin-top: 20px;
         }
-        /* Mostra il pulsante su mobile */
         @media (max-width: 768px) {
-            #downloadBtn {
+            #pdfViewer {
+                width: 100%;
+                height: 500px;
+            }
+            .download-button {
                 display: block;
             }
         }
@@ -84,58 +56,31 @@
             <a class="navbar-brand" href="index.html">
                 <img src="images/logo-sbg.jpeg" alt="Logo" class="logo" style="max-width: 50px;">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="iscrizioni.html">Iscrizioni e modulistica</a></li>
-                    <li class="nav-item"><a class="nav-link" href="corsi.html">Corsi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="galleria.html">Galleria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contatti.html">Contatti</a></li>
-                </ul>
-            </div>
         </nav>
     </div>
     <div class="container-fluid flex-grow-1 d-flex flex-column">    
         <div class="row flex-grow-1">
             <div class="col-12 d-flex flex-column align-items-center justify-content-center">
                 <h1>Compila il modulo PDF</h1>
-                <iframe id="pdfViewer" src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px; display: block; margin: 0 auto;"></iframe>
-                
-                <!-- Pulsante di download visibile solo su mobile -->
-                <a id="downloadBtn" href="documenti/Atleta_Amatore.pdf" download class="btn btn-primary">Scarica PDF</a>
+                <iframe id="pdfViewer" src="documenti/Atleta_Amatore.pdf"></iframe>
+                <a id="downloadButton" class="btn btn-primary download-button" href="documenti/Atleta_Amatore.pdf" download>Scarica il PDF</a>
             </div>
         </div>
     </div>
     <div class="row footer-row mt-auto">
-        <div class="col-12 d-flex align-items-center justify-content-between">
-            <div>
-                <h2>Scuola Boxe Gorla</h2>
-                <h2>Indirizzo: piazza XXV Aprile , 18, Gorla Minore</h2>
-                <h2>Telefono: +39 123 456 789</h2>
-                <h2>Email: info@scuolaboxegorla.it</h2>
-            </div>
-        </div>    
+        <div class="col-12 text-center">
+            <h2>Scuola Boxe Gorla</h2>
+            <h2>Indirizzo: Piazza XXV Aprile, 18, Gorla Minore</h2>
+            <h2>Telefono: +39 123 456 789</h2>
+            <h2>Email: info@scuolaboxegorla.it</h2>
+        </div>
     </div>
-    <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
-
     <script>
-        window.onscroll = function() {
-            var scrollToTopButton = document.querySelector('.scroll-to-top');
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                scrollToTopButton.style.display = 'block';
-            } else {
-                scrollToTopButton.style.display = 'none';
+        window.onload = function() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('downloadButton').style.display = 'block';
             }
         };
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
