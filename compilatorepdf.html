@@ -52,6 +52,10 @@
             text-align: left;
             margin-left: 20px;
         }
+        h3 {
+            font-size: 15px;
+            text-align: center;
+        }
         .scroll-to-top {
             position: fixed;
             bottom: 20px;
@@ -137,8 +141,10 @@
             <div class="col-12 d-flex flex-column align-items-center justify-content-center">
                 <h1>Compila il modulo PDF</h1>
                 <iframe id="pdfViewer" src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px; display: block; margin: 0 auto;"></iframe>
+                <div class="mobile-info">
+                    <h3><i>+3 pagine</i></h3>
+                </div>
                 <button class="download-btn" onclick="downloadPDF()">Scarica il PDF</button>
-                <div class="mobile-info"><i>+3 pagine</i></div>
             </div>
         </div>
     </div>
