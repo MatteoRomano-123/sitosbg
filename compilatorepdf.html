@@ -81,15 +81,13 @@
         }
         iframe {
             width: 100%;
-            max-width: 800px;
             height: 600px;
-            margin: 0 auto;
-            display: block;
+            border: none;
         }
         @media (max-width: 768px) {
             iframe {
-                max-width: 100%;
                 height: auto;
+                max-width: 100%;
             }
         }
     </style>
@@ -123,7 +121,7 @@
                     <iframe src="documenti/Atleta_Amatore.pdf" width="100%" height="600px" style="border: none;"></iframe>
                 </div>
 
-                <!-- Su Mobile, rendi visibile il modulo e usa pdf-lib per la compilazione -->
+                <!-- Su Mobile, pdf-lib per la visualizzazione e compilazione -->
                 <div id="mobile-view" style="display: none;">
                     <canvas id="pdfCanvas"></canvas>
                     <button class="btn btn-primary" onclick="compilaEPdf()">Scarica PDF Compilato</button>
@@ -200,6 +198,9 @@
                 document.getElementById('desktop-view').style.display = 'none';
                 document.getElementById('mobile-view').style.display = 'block';
                 caricaPDF();
+            } else {
+                document.getElementById('desktop-view').style.display = 'block';
+                document.getElementById('mobile-view').style.display = 'none';
             }
         };
     </script>
