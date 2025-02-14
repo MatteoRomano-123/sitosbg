@@ -43,7 +43,8 @@
             form.getTextField('Cognome').setText(cognome);
             form.getTextField('Data di Nascita').setText(dataNascita);
 
-            form.flatten();
+            // NON appiattiamo il modulo, per mantenere i campi interattivi
+            // form.flatten(); // Rimuovi questa riga per mantenere i campi interattivi
 
             // Salva il PDF compilato
             const pdfBytes = await pdfDoc.save();
