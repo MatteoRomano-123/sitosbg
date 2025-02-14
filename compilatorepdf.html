@@ -79,6 +79,17 @@
             padding-left: 0;
             padding-right: 0;
         }
+        iframe {
+            width: 80%;
+            height: 600px;
+            display: block;
+            margin: 0 auto;
+            border: none;
+        }
+        .form-container {
+            display: none;
+            margin: 20px;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -105,7 +116,27 @@
             <div class="col-12 d-flex flex-column align-items-center justify-content-center">
                 <h1>Compila il modulo PDF</h1>
 
-                <iframe src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px; display: block; margin: 0 auto;"></iframe>
+                <!-- Su Desktop, visualizzazione PDF tramite iframe -->
+                <div id="desktop-view">
+                    <iframe src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px;"></iframe>
+                </div>
+
+                <!-- Su Mobile, compilazione del PDF -->
+                <div id="mobile-view" class="form-container">
+                    <div>
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" class="form-control" placeholder="Inserisci il nome">
+                    </div>
+                    <div>
+                        <label for="cognome">Cognome</label>
+                        <input type="text" id="cognome" class="form-control" placeholder="Inserisci il cognome">
+                    </div>
+                    <div>
+                        <label for="dataNascita">Data di Nascita</label>
+                        <input type="date" id="dataNascita" class="form-control">
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="compilaEPdf()">Scarica PDF Compilato</button>
+                </div>
             </div>
         </div>
     </div>
@@ -120,6 +151,7 @@
         </div>    
     </div>
     <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
     <script>
         async function compilaEPdf() {
@@ -149,7 +181,18 @@
             link.download = 'Modulo_Compilato.pdf';
             link.click();
         }
+
+        window.onload = function() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('desktop-view').style.display = 'none';
+                document.getElementById('mobile-view').style.display = 'block';
+            } else {
+                document.getElementById('desktop-view').style.display = 'block';
+                document.getElementById('mobile-view').style.display = 'none';
+            }
+        };
     </script>
+    
     <script>
         window.onscroll = function() {
             var scrollToTopButton = document.querySelector('.scroll-to-top');
