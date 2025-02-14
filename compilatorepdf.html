@@ -17,12 +17,6 @@
             max-width: 60%;
             height: auto;
         }
-        .logo-footer {
-            max-width: 60%;
-            height: auto;
-            padding: 0;
-            margin-right: 40px;
-        }
         .black-row {
             background-color: black;
             color: white;
@@ -38,19 +32,8 @@
             padding: 5px 0;
             text-align: center;
         }
-        .flex-grow-1 {
-            flex-grow: 1;
-        }
-        p {
-            font-size: 25px;
-        }
         h1 {
             margin-bottom: 20px;
-        }
-        h2 {
-            font-size: 15px;
-            text-align: left;
-            margin-left: 20px;
         }
         .scroll-to-top {
             position: fixed;
@@ -71,10 +54,6 @@
             width: 100%; 
             margin: 0;
         }
-        .navbar-nav {
-            margin-left: auto; 
-            padding: 0;
-        }
         .container-fluid {
             padding-left: 0;
             padding-right: 0;
@@ -83,6 +62,19 @@
             width: 100%;
             height: 600px;
             border: none;
+        }
+        /* Nasconde il pulsante su desktop */
+        #downloadBtn {
+            display: none;
+            width: 80%;
+            margin: 10px auto;
+            text-align: center;
+        }
+        /* Mostra il pulsante su mobile */
+        @media (max-width: 768px) {
+            #downloadBtn {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -110,6 +102,9 @@
             <div class="col-12 d-flex flex-column align-items-center justify-content-center">
                 <h1>Compila il modulo PDF</h1>
                 <iframe id="pdfViewer" src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px; display: block; margin: 0 auto;"></iframe>
+                
+                <!-- Pulsante di download visibile solo su mobile -->
+                <a id="downloadBtn" href="documenti/Atleta_Amatore.pdf" download class="btn btn-primary">Scarica PDF</a>
             </div>
         </div>
     </div>
@@ -124,25 +119,8 @@
         </div>    
     </div>
     <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
-    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+
     <script>
-        async function loadAndRenderPDF() {
-            const url = 'documenti/Atleta_Amatore.pdf';
-            const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
-            const { PDFDocument } = PDFLib;
-            const pdfDoc = await PDFDocument.load(existingPdfBytes);
-            const form = pdfDoc.getForm();
-
-            // Render PDF in iframe
-            const pdfBytes = await pdfDoc.save();
-            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-            const urlBlob = URL.createObjectURL(blob);
-            document.getElementById('pdfViewer').src = urlBlob;
-        }
-
-        loadAndRenderPDF();
-
         window.onscroll = function() {
             var scrollToTopButton = document.querySelector('.scroll-to-top');
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
