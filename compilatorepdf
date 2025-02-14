@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compila e Scarica il PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+</head>
+<body>
+    <h1>Compila il modulo direttamente sulla pagina</h1>
+    <canvas id="pdfCanvas"></canvas>
+    <form id="pdfForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required><br>
+        
+        <label for="cognome">Cognome:</label>
+        <input type="text" id="cognome" required><br>
+        
+        <label for="dataNascita">Data di Nascita:</label>
+        <input type="date" id="dataNascita" required><br>
+        
+        <button type="button" onclick="compilaEPdf()">Scarica PDF</button>
+    </form>
+    
+    <script>
+        let pdfDoc;
+        const url = '/Users/matteoromano/Desktop/Informatica/Sito boxe/compilatorepdf.html';
+        
+        async function caricaPDF() {
+            const loadingTask = pdfjsLib.getDocument(url);
+            pdfDoc = await loadingTask.promise;
+            const page = await pdfDoc.getPage(1);
+            
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale });
+            
+            const canvas = document.getElementById('pdfCanvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            await page.render(renderContext);
+        }
+        
+        async function compilaEPdf() {
+            const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
+            const { PDFDocument } = PDFLib;
+            const pdfDoc = await PDFDocument.load(existingPdfBytes);
+            const form = pdfDoc.getForm();
+            
+            const nome = document.getElementById('nome').value;
+            const cognome = document.getElementById('cognome').value;
+            const dataNascita = document.getElementById('dataNascita').value;
+            
+            form.getTextField('Io sottoscritto Nome 1_2').setText(nome);
+            form.getTextField('Cognome_2').setText(cognome);
+            form.getTextField('nato a_2').setText(dataNascita);
+            
+            form.flatten();
+            
+            const pdfBytes = await pdfDoc.save();
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Modulo_Compilato.pdf';
+            link.click();
+        }
+        
+        window.onload = caricaPDF;
+    </script>
+</body>
+</html>
