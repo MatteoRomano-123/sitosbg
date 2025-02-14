@@ -118,23 +118,12 @@
 
                 <!-- Su Desktop, visualizzazione PDF tramite iframe -->
                 <div id="desktop-view">
-                    <iframe src="documenti/Atleta_Amatore.pdf"></iframe>
+                    <iframe src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px; display: block; margin: 0 auto;"></iframe>
                 </div>
 
                 <!-- Su Mobile, compilazione del PDF -->
                 <div id="mobile-view" class="form-container">
-                    <div>
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" class="form-control" placeholder="Inserisci il nome">
-                    </div>
-                    <div>
-                        <label for="cognome">Cognome</label>
-                        <input type="text" id="cognome" class="form-control" placeholder="Inserisci il cognome">
-                    </div>
-                    <div>
-                        <label for="dataNascita">Data di Nascita</label>
-                        <input type="date" id="dataNascita" class="form-control">
-                    </div>
+                    <iframe src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px; display: block; margin: 0 auto;"></iframe>
                     <button class="btn btn-primary mt-3" onclick="compilaEPdf()">Scarica PDF Compilato</button>
                 </div>
             </div>
