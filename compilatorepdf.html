@@ -79,6 +79,11 @@
             padding-left: 0;
             padding-right: 0;
         }
+        #pdfViewer {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -104,8 +109,7 @@
         <div class="row flex-grow-1">
             <div class="col-12 d-flex flex-column align-items-center justify-content-center">
                 <h1>Compila il modulo PDF</h1>
-
-                <iframe src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px; display: block; margin: 0 auto;"></iframe>
+                <iframe id="pdfViewer" src="documenti/Atleta_Amatore.pdf"></iframe>
             </div>
         </div>
     </div>
@@ -121,36 +125,24 @@
     </div>
     <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
-        async function compilaEPdf() {
+        async function loadAndRenderPDF() {
             const url = 'documenti/Atleta_Amatore.pdf';
             const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
             const { PDFDocument } = PDFLib;
             const pdfDoc = await PDFDocument.load(existingPdfBytes);
             const form = pdfDoc.getForm();
-            
-            const nome = document.getElementById('nome').value;
-            const cognome = document.getElementById('cognome').value;
-            const dataNascita = document.getElementById('dataNascita').value;
 
-            // Compila i campi del modulo
-            form.getTextField('Nome').setText(nome);
-            form.getTextField('Cognome').setText(cognome);
-            form.getTextField('Data di Nascita').setText(dataNascita);
-
-            // NON appiattiamo il modulo, per mantenere i campi interattivi
-            // form.flatten(); // Rimuovi questa riga per mantenere i campi interattivi
-
-            // Salva il PDF compilato
+            // Render PDF in iframe
             const pdfBytes = await pdfDoc.save();
             const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'Modulo_Compilato.pdf';
-            link.click();
+            const urlBlob = URL.createObjectURL(blob);
+            document.getElementById('pdfViewer').src = urlBlob;
         }
-    </script>
-    <script>
+
+        loadAndRenderPDF();
+
         window.onscroll = function() {
             var scrollToTopButton = document.querySelector('.scroll-to-top');
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
