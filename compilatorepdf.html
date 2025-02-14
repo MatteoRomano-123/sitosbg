@@ -79,6 +79,13 @@
             padding-left: 0;
             padding-right: 0;
         }
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            display: block;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -105,7 +112,10 @@
             <div class="col-12 d-flex flex-column align-items-center justify-content-center">
                 <h1>Compila il modulo PDF</h1>
 
-                <iframe src="documenti/Atleta_Amatore.pdf" style="border: none; width: 80%; height: 600px; display: block; margin: 0 auto;"></iframe>
+                <!-- Usa pdf.js per visualizzare e interagire con il PDF -->
+                <canvas id="pdfCanvas"></canvas>
+                <br>
+                <button class="btn btn-primary" onclick="compilaEPdf()">Scarica PDF Compilato</button>            
             </div>
         </div>
     </div>
@@ -120,10 +130,33 @@
         </div>    
     </div>
     <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.16.0/pdf-lib.min.js"></script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
+        const url = 'documenti/Atleta_Amatore.pdf';
+        
+        async function caricaPDF() {
+            const loadingTask = pdfjsLib.getDocument(url);
+            const pdfDoc = await loadingTask.promise;
+            const page = await pdfDoc.getPage(1);
+            
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale });
+            
+            const canvas = document.getElementById('pdfCanvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            await page.render(renderContext);
+        }
+
         async function compilaEPdf() {
-            const url = 'documenti/Atleta_Amatore.pdf';
             const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
             const { PDFDocument } = PDFLib;
             const pdfDoc = await PDFDocument.load(existingPdfBytes);
@@ -149,7 +182,10 @@
             link.download = 'Modulo_Compilato.pdf';
             link.click();
         }
+
+        window.onload = caricaPDF;
     </script>
+    
     <script>
         window.onscroll = function() {
             var scrollToTopButton = document.querySelector('.scroll-to-top');
@@ -164,6 +200,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
