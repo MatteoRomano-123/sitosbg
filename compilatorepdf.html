@@ -121,9 +121,21 @@
                     <iframe src="documenti/Atleta_Amatore.pdf" width="100%" height="600px" style="border: none;"></iframe>
                 </div>
 
-                <!-- Su Mobile, pdf-lib per la visualizzazione e compilazione -->
+                <!-- Su Mobile, visualizzazione e compilazione -->
                 <div id="mobile-view" style="display: none;">
                     <canvas id="pdfCanvas"></canvas>
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" class="form-control" placeholder="Inserisci il nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="cognome">Cognome</label>
+                        <input type="text" id="cognome" class="form-control" placeholder="Inserisci il cognome">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataNascita">Data di Nascita</label>
+                        <input type="date" id="dataNascita" class="form-control">
+                    </div>
                     <button class="btn btn-primary" onclick="compilaEPdf()">Scarica PDF Compilato</button>
                 </div>
             </div>
